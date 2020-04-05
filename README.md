@@ -8,11 +8,24 @@ This example demonstrates the use of CHECK Constraints on the following database
 
 Sample data can be found in the [script file](script.txt).
 
-* Introduce violation via INSERT
+* Attribute-based checks
 ```sql
 INSERT INTO contacts(first_name, last_name, phone)
 VALUES('John','Doe','408123456');
 
 INSERT INTO contacts(first_name, last_name, phone)
 VALUES('John','Doe','(408)-123-456');
+```
+
+* Tuple-base checks
+```sql
+INSERT INTO products(product_name, list_price, discount)
+VALUES('New Product',900,1000);
+
+INSERT INTO products(product_name, list_price, discount)
+VALUES('New XFactor',1000,10);   
+
+UPDATE products
+SET discount = -10
+WHERE product_name = 'New XFactor';
 ```
